@@ -1,4 +1,6 @@
 Secure User Authentication
+
+
 This repository contains a Flask application for Secure user Authentication , featuring login, signup, and role-based access control. The application is designed with security and user experience in mind, implementing features such as password hashing, session management, and flash messaging for user feedback.
 
 Features
