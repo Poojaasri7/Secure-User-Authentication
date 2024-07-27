@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Dashboard</title> 
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard1.css') }}">
+{% endblock %}
+
+{% block body %}  
+<div class="dashboard">
+    <div class="box12">
+        <h1>Your Details</h1>
+        <h3 id="ho">USERNAME: <span>{{ user1 }}</span></h3>
+        <h3 id="ht">EMAIL:</h3>
+        <h3 id="hr">{{ email }}</h3>
+        <form action="{{ url_for('logout') }}" method="POST">
+            <button type="submit" class="logout">LOGOUT</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

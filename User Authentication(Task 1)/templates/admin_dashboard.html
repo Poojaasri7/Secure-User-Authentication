@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <h1 class="centered1">Admin Dashboard</h1>
+    <h2 id="hq" class="centered">All Users</h2>
+    <div class="user-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th id="ei">Email</th>
+                    <th>Role</th>
+                    <th id="er">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td class="user-actions">
+                        <form action="{{ url_for('delete', user_id=user.id) }}" method="POST" class="inline-form">
+                            <button type="submit">DELETE</button>
+                        </form>
+                        <form action="{{ url_for('update_role', user_id=user.id) }}" method="POST" class="inline-form">
+                            <select name="role">
+                                <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+                                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                            </select>
+                            <button type="submit">UPDATE ROLE</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="logout-form centered">
+        <form action="{{ url_for('logout') }}" method="POST">
+            <button type="submit" class="logout">LOGOUT</button>
+        </form>
+    </div>
+</body>
+</html>
